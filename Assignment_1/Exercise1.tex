@@ -1,5 +1,51 @@
 \section{Exercise 1}
-\paragraph{a)}
+\paragraph{a)}\label{par:a}
 \begin{align}
-Blaa
+u_t + 7u_x=0,&\label{eq:1a}\\
+u \rightarrow u(x,t),&\\
+u_0 \rightarrow u(0,t).&
 \end{align}
+Introduce curve in space time with parametrisation $u(x(s),t(s))$. Using the chain rule we can calculate the total derivative of $u$  by the parameter $s$
+\begin{align}
+\der{}{s}u(x(s),t(s)) = \der{x}{s}\pder{u}{x} + \der{t}{s}\pder{u}{t}
+\end{align}
+When choosing parametrisation that fulfil $\der{t}{s} = 1$ and $\der{x}{s}=7$ we see, that the left hand side  of  \cref{eq:1a} can be written as $\der{}{s}u(x(s),t(s))=0$.
+So along the characteristics we can reduce the  PDE to three ODE's 
+\begin{align}
+\der{t}{s} &= 1,\\
+\der{x}{s}&=7,\\
+\der{}{s}u&=0.
+\end{align}
+We can easily solve them
+\begin{align}
+t=s +t_0,\\
+x = 7s + x_0,\label{eq:1a_xs}\\
+u(x,t) = u(x_0, 0) =u_0(x_0)\label{eq:1a_u_u0} .
+\end{align}
+If we set $t_0=0$ we get $t=s$. Plugging this into \cref{eq:1a_xs} we arrive at an equation for the charachteristics 
+\begin{align}
+x(t) = 7t + x_0.\label{eq:1a_charch_curve}
+\end{align}
+A plot can be seen in \cref{fig:1aplot}.
+Solving this for $x_0$ and plugging into \cref{eq:1a_u_u0} gives us the general solution
+\begin{align}
+u(x,t)=u_0(x_0)=u_0(x-7t).
+\end{align}
+
+\paragraph{b)}
+\begin{align}
+u_t - 2u_x +3u=0,&\label{eq:1a}\\
+u \rightarrow u(x,t),&\\
+u_0 \rightarrow u(0,t).&
+\end{align}
+We use the same reasoning as in \cref{par:a} to arrive at the equations
+\begin{align}
+\der{t}{s} &= 1,\\
+\der{x}{s}&=-2,\\
+\der{}{s}u&+3u=0.
+\end{align}
+\begin{figure}
+\subfloat[Charachteristic curves given by \cref{eq:1a_charch_curve} with different starting conditions $x_0$.\label{fig:1aplot}]{\includegraphics[width=0.48\textwidth]{CharachteristicCurve_1a.pdf}}
+\hfill
+\subfloat[Charachteristic curves given by \cref{eq:1a_charch_curve} with different starting conditions $x_0$.\label{fig:1bplot}]{\includegraphics[width=0.48\textwidth]{CharachteristicCurve_1a.pdf}}
+\end{figure}
