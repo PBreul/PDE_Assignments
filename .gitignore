@@ -10,5 +10,4 @@
 # Now exclude our type
 !*.tex
 
-# Don't ignore assignment sheet
-! Assignemt_1/PDEs_assignment_2018.pdf
+!Assignment_1/PDEs_assignment_2018.pdf 
