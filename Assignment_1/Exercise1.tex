@@ -42,10 +42,30 @@ We use the same reasoning as in \cref{par:a} to arrive at the equations
 \begin{align}
 \der{t}{s} &= 1,\\
 \der{x}{s}&=-2,\\
-\der{}{s}u&+3u=0.
+\der{}{s}u&+3u=0.\label{eq:1b_difu}
+\end{align}
+
+The first two equations can again be solved by simple integration. For the last we use the exponential ansatz $u(x(s),t(s)) = u_0(x_0)\cdot e^{a\cdot s}$. Plugging this into \cref{eq:1b_difu} results in the equation
+\begin{align}
+ u_0(x_0)\cdot e^{a\cdot s}\cdot(a+3) = 0.
+\end{align}
+For non trivial initial conditions we thus find $a=-3$. The solutions to the three equations are given by 
+\begin{align}
+t(s)&=s+t_0,\\
+x(s)&=-2s+x_0,\\
+u(x(s),t(s))&=u_0(x_0)\cdot e^{-3s}
+\end{align}
+If we set $t_0=0$ we get $t=s$, the charachteristic curves then become
+\begin{align}
+x(t)=-2t+x_0.\label{eq:1b_charch_curve}
+\end{align}
+A plot can be found in \cref{fig:1bplot}.
+The full solution is then together with $x_0=x+2t$
+\begin{align}
+u(x(t),t)=u_0(x+2t)\cdot e^{-3t}.
 \end{align}
 \begin{figure}
-\subfloat[Charachteristic curves given by \cref{eq:1a_charch_curve} with different starting conditions $x_0$.\label{fig:1aplot}]{\includegraphics[width=0.48\textwidth]{CharachteristicCurve_1a.pdf}}
+\subfloat[Charachteristic curves given by \cref{eq:1a_charch_curve} with different starting conditions $x_0$.\label{fig:1aplot}]{\includegraphics[width=0.49\textwidth]{CharachteristicCurve_1a.pdf}}
 \hfill
-\subfloat[Charachteristic curves given by \cref{eq:1a_charch_curve} with different starting conditions $x_0$.\label{fig:1bplot}]{\includegraphics[width=0.48\textwidth]{CharachteristicCurve_1a.pdf}}
+\subfloat[Charachteristic curves given by \cref{eq:1b_charch_curve} with different starting conditions $x_0$.\label{fig:1bplot}]{\includegraphics[width=0.49\textwidth]{CharachteristicCurve_1b.pdf}}
 \end{figure}
