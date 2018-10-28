@@ -1,0 +1,89 @@
+\section{Exercise 3}
+In this exercise we want to actually find an entropy / entropy flux pair $(\eta,q)$,associated to the following system of pde's
+\begin{align}
+\rho_t +(\rho v)_x &=0,\\
+(\rho v)_t +(\rho v^2 +p)_x &=0.
+\end{align}
+Here $p = p(\rho)$ is a smooth function with $p'(\rho)>0$.  We will use the same approach as in the previous exercise, i.e. deriving a differential equation for the entropy $\eta$, but this time we will solve it and calculate the associated entropy flux $q$ as well. \\
+As a first step we will rewrite the equation in term of the new variable $\Phi = \rho v$.
+\begin{align}
+\rho_t +\Phi_x &=0,\\
+\Phi_t +(\Phi^2 / \rho +p)_x &=0.
+\end{align}
+We identify the flux vector $\bm f(\rho, \Phi) = \begin{pmatrix} \Phi \\ \Phi^2/\rho +p \end{pmatrix} $. 
+We calculate the Jacobian of the flux $\bm f$
+\begin{align}
+D\bm f=\begin{pmatrix}
+0 & 1 \\
+-\Phi^2/\rho^2 +p'(\rho) & 2\Phi/\rho
+\end{pmatrix}.
+\end{align}
+We insert this into \cref{eq:entropy_flux_diff}, together with the Hessian matrix of the entropy $D^2 \eta$ and calculate the matrix multiplications. This yields the result
+\begin{align}
+\begin{pmatrix}
+(p'(\rho)-\Phi^2/\rho^2)\eta_{\Phi\rho} & (p'(\rho)-\Phi^2/\rho^2) \eta_{\Phi\Phi}\\
+\eta_{\rho\rho}+2\Phi/\rho\eta_{\Phi\rho} & \eta_{\rho\Phi} + 2\Phi/\rho \eta_{\Phi\Phi} 
+\end{pmatrix}
+=
+\begin{pmatrix}
+\eta_{\rho\Phi}(p'(\rho)-\Phi^2/\rho^2) & \eta_{\rho\rho} +2\Phi/\rho \eta_{\rho \Phi}\\
+\eta_{\Phi\Phi}(p'(\rho)-\Phi^2/\rho^2) & \eta_{\Phi\rho}+ 2\Phi/\rho \eta_{\Phi\Phi}
+\end{pmatrix}.
+\end{align}
+We again assume that $\eta$ has continuous second derivatives and thus Schwarz's theorem tells us that $\eta_{\rho\Phi}=\eta_{\Phi\rho}$. The first and fourth equation again become trivial $0=0$, the second and third equation are the same, namely
+\begin{align}
+\eta_{\Phi\Phi}(p'(\rho)-\Phi^2/\rho^2) = \eta_{\rho\rho} +2\Phi/\rho \eta_{\rho \Phi}.\label{eq:diff_eta_3}
+\end{align}
+By calculation we will show, that 
+\begin{align}
+\eta(\rho,\Phi)= \frac {\Phi^2}{2\rho} +P(\rho) \label{eq:eta_ansatz_3}
+\end{align}
+solves \cref{eq:diff_eta_3}, with $P''(\rho)=p'(\rho)/\rho$. We calculate
+\begin{align}
+\eta_{\rho\rho}&=\frac{\Phi^2}{\rho^3}+\frac{p'(\rho)}{\rho},\\
+\eta_{\Phi\Phi}&=\frac 1\rho,\\
+\eta_{\rho\Phi}&=-\frac{\Phi}{\rho^2}.
+\end{align}
+Inserting this into \cref{eq:diff_eta_3} gives for the left and right hand side
+\begin{align}
+\eta_{\Phi\Phi}(p'(\rho)-\Phi^2/\rho^2)&=\frac 1\rho(p'(\rho)-\Phi^2/\rho^2),\\
+ \eta_{\rho\rho} +2\Phi/\rho \eta_{\rho \Phi}& = \frac{\Phi^2}{\rho^3}+\frac{p'(\rho)}{\rho} -2\frac{\Phi^2}{\rho^3} = \frac 1\rho(p'(\rho)-\Phi^2/\rho^2).
+\end{align}
+So \cref{eq:eta_ansatz_3} solves \cref{eq:diff_eta_3}. \\ \\
+As a second step we want to calculate the corresponding entropy flux $ q(\rho,\Phi)$
+For this we will use the relation following relation of entropy flux $q$, entropy $\eta$ and flux $\bm f$, which holds for conservation laws
+\begin{align}
+D q = D\eta D\bm f.\label{eq:ent_flux_diff}
+\end{align}
+We calculate
+\begin{align}
+D\eta = \begin{pmatrix}
+-\frac 12 \frac{\Phi^2}{\rho^2} +P'(\rho), &
+\frac{\Phi}{\rho}
+\end{pmatrix}.
+\end{align}
+Inserting $D\bm f$, $D\eta$ into \cref{eq:ent_flux_diff} and calculating the matrix vector multiplication, gives
+\begin{align}
+\begin{pmatrix}
+q_\rho ,& q_\Phi 
+\end{pmatrix}
+=\begin{pmatrix}
+\Phi P'' -\frac{\Phi^3}{\rho^2}, P' +\frac 32 \frac{\Phi^2}{\rho^2}
+\end{pmatrix}\label{eq:der_q}
+\end{align}
+We make the educated guess 
+\begin{align}
+q=\Phi P'(\rho) +\frac 12 \frac{\Phi^3}{\rho^2} +c.\label{eq:q_sol}
+\end{align}
+With $c$ some constant.
+We calculate the derivatives 
+\begin{align}
+\partial_\rho q = \Phi P''(\rho) - \frac{\Phi^3}{\rho^3},\\
+\partial_\Phi q = P'(\rho) +\frac 32 \frac{\Phi^2}{\rho^2}
+\end{align}
+We see, that this fits the requirement of \cref{eq:der_q}, so \cref{eq:q_sol} is the to $\eta$ corresponding entropy flux $q$.
+\\We can rewrite the solution in terms of the original variables, by re- substituting $\Phi=\rho v$
+\begin{align}
+\eta(\rho,v)&=\frac 12 \rho v^2 +P(\rho),\\
+ q(\rho,v)&= \rho v P'(\rho) + \frac 12 \rho v^3.
+\end{align}
