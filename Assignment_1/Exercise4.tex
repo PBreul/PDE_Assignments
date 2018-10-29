@@ -1,0 +1,36 @@
+\section{Exercise 4}
+We have the following pde given
+\begin{align}
+u_t = u_{xxx} +6uu_x, \quad u=u(x,t) \label{eq:kdv}
+\end{align}
+which is known as the Korteweg-de Vries equation.
+\paragraph{(a)}
+We want to find a symmetry transformation of the dependent and independent variables
+\begin{align}
+S:(t,x,u)\rightarrow(T,X,U) = (at,bt,cu),
+\end{align}
+with $a,b,c$ nonzero constants, such that \cref{eq:kdv} takes the form
+\begin{align}
+U_T = U_{XXX} +6UU_X, \quad U=U(X,T).\label{eq:transformed_kdv}
+\end{align}
+Before starting the calculations, we note the chain rule of partial derivatives 
+\begin{align}
+\pder{f(x(t))}{t} = \pder{x(t)}{t}\pder{f(x)}{x}.\label{eq:chain_rule}
+\end{align}
+We calculate the individual terms in \cref{eq:transformed_kdv}
+\begin{align}
+U_T(X,T)&=\pder{}{T}U=c\pder{}{T}u(x,t) \stackrel{\cref{eq:chain_rule}}{=} c \underbrace{\pder{t}{T}}_{1/a}\pder{u(x,t)}{t}=\frac ca u_t,\\
+\intertext{In the same manner we calculate}
+U_X&= c\frac{\partial x}{\partial X} \frac{\partial}{\partial x} u(x,t)=\frac{c}{b} u_{x},\\
+U_{XXX}&=c \frac{\partial^3 x}{\partial X^3} \frac{\partial^3}{\partial x^3} u(x,t)=\frac{c}{b^3} u_{xxx}.
+\end{align}
+Plugging this into \cref{eq:transformed_kdv} we get
+\begin{alignat}{2}
+ &\frac ca u_t &&= \frac{c}{b^3} u_{xxx} +6\frac{c^2}{b}uu_x,\\
+\iff &   u_t &&= \frac{a}{b^3} u_{xxx} +6\frac{c}{b}uu_x.
+\end{alignat}
+So we get the conditions
+\begin{align}
+\frac{a}{b^3}=1, &\qquad \frac{ac}{b}=1,\\
+\iff a=b^3,& \qquad c=\frac{1}{b^2}.
+\end{align}
