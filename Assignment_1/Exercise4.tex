@@ -4,7 +4,7 @@ We have the following pde given
 u_t = u_{xxx} +6uu_x, \quad u=u(x,t) \label{eq:kdv}
 \end{align}
 which is known as the Korteweg-de Vries equation.
-\paragraph{(a)}
+\paragraph{(a)}\label{ch:4a}
 We want to find a symmetry transformation of the dependent and independent variables
 \begin{align}
 S:(t,x,u)\rightarrow(T,X,U) = (at,bt,cu),
@@ -25,12 +25,71 @@ U_X&= c\frac{\partial x}{\partial X} \frac{\partial}{\partial x} u(x,t)=\frac{c}
 U_{XXX}&=c \frac{\partial^3 x}{\partial X^3} \frac{\partial^3}{\partial x^3} u(x,t)=\frac{c}{b^3} u_{xxx}.
 \end{align}
 Plugging this into \cref{eq:transformed_kdv} we get
-\begin{alignat}{2}
- &\frac ca u_t &&= \frac{c}{b^3} u_{xxx} +6\frac{c^2}{b}uu_x,\\
-\iff &   u_t &&= \frac{a}{b^3} u_{xxx} +6\frac{c}{b}uu_x.
-\end{alignat}
+\begin{flalign}
+ &&\frac ca u_t &= \frac{c}{b^3} u_{xxx} +6\frac{c^2}{b}uu_x,&&\\
+\iff &&   u_t &= \frac{a}{b^3} u_{xxx} +6\frac{c}{b}uu_x.&&
+\end{flalign}
 So we get the conditions
+\begin{flalign}
+&&\frac{a}{b^3}=1, &\qquad \frac{ac}{b}=1,&&\\
+\iff&& a=b^3,& \qquad c=\frac{1}{b^2}.&&
+\end{flalign}
+We choose $b=\epsilon$ with $\epsilon$ non zero and find
 \begin{align}
-\frac{a}{b^3}=1, &\qquad \frac{ac}{b}=1,\\
-\iff a=b^3,& \qquad c=\frac{1}{b^2}.
+X = \epsilon x, \quad T = \epsilon^3 t,\quad U = \frac{1}{\epsilon^2} u. 
 \end{align}
+Now we assume, that $u(x,t) = f(x,t)$ is a solution to \cref{eq:kdv}. The found symmetries leave the equation invariant. So we can construct a second solution
+\begin{align}
+u(x,t) = \epsilon^2 f(X,T) =  \epsilon^2 f(\epsilon x, \epsilon^3 t).
+\end{align}
+
+\paragraph{(b)}
+We propose a solution of the type 
+\begin{align}
+u(x,t)=f(\xi),\quad \xi= x-vt.
+\end{align}
+We insert this ansatz into\cref{eq:kdv}. With the chain rule \cref{eq:chain_rule} we calculate the individual terms
+\begin{align}
+u_t &= \partial_\xi u \underbrace{\partial_t \xi}_{-v}=-v \partial_\xi u,\\
+u_x &= \partial_\xi u \partial_x \xi = \partial_\xi u ,\\
+\Rightarrow u _{xxx}&= \partial_{\xi}^3 u.
+\end{align}
+The equation becomes 
+\begin{align}
+-v u_\xi = u_{\xi\xi\xi} + 6 u u_\xi.
+\end{align}
+Since $\xi$ is the only variable, we have an ODE, we will use $(\cdot)'$ as notation for derivative to make clear, we are dealing with an ODE
+\begin{align}
+-v u' = u''' +6 uu'.\label{eq:4b_ode}
+\end{align}
+We take the integral
+\begin{align}
+\int -v u' \dd\xi &= \int u''' +3(u^2)' \dd\xi\\
+\Rightarrow v u+u''+3u^2 &= A.
+\end{align}
+With $A$ being some integration constant.  We multiply by $u'$ and integrate again
+\begin{align}
+\int vuu' +u'u'' + 3u'u^2 \dd\xi&= \int Au' \dd\xi\\
+\Rightarrow \frac 12 vu^2 + \frac 12 (u')^2  + u^3&= Au +B
+\end{align}
+The Weierstrass $\mathscr{P}$-function solves equations of the form
+\begin{align}
+(\mathscr{P}')^2 = 4\mathscr{P}^3-g_1\mathscr{P}-g_2
+\end{align}
+We have to make a substitution, so we get rid of the quadradic term in $\mathscr{P}$.
+We propose $u(\xi)=-2y(\xi)-\frac v6$. Inserting, gives (addition of cubic and quadratic term done with Wolframalpha)
+\begin{align}
+-8y^3+\frac{v^2y}{2}+\frac{v^3}{108} +2(y')^2&=A\left(-2y-\frac v6\right) +B\\
+\iff (y')^2 &= 4y^3-\underbrace{\left(\frac{v^2}{4}+A\right)}_{g_1}y - \underbrace{\left(\frac{v^3}{216} +\frac{Av}{12} - \frac B2\right)}_{g_2}
+\end{align}
+So the solution to \cref{eq:kdv} is given by
+\begin{align}
+u(x,t) &= -2\mathscr{P}(\xi,g_1,g_2) - \frac v6, \label{eq:sol_4b}\\
+\xi = x-vt,& \quad g_1=\frac{v^2}{4}+A, \quad g_2=\frac{v^3}{216} +\frac{Av}{12} - \frac B2.
+\end{align}
+\paragraph{(c)}
+We know, from exercise (a) that \cref{eq:sol_4b} will also be solved by
+\begin{align}
+u(x,t)=\epsilon^2\left(-2\mathscr{P}(\epsilon\left( x-\epsilon^2v t\right), g_1,g_2)-\frac{v}{6}\right).
+\end{align}
+For larger $\epsilon$ the amplitude of $u$ will clearly be larger. But at the same time, the time evolution will be faster, because we have an additional $\epsilon^2$ in front of $t$, compared to $x$. Or we could say, that we absorb the $\epsilon^2$ into a new velocity $\tilde{v}=v\epsilon^2$ which will of course be larger for larger $\epsilon$. So the wave propagates faster. \todo{Explanation}
