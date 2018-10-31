@@ -36,7 +36,7 @@ So we get the conditions
 \end{flalign}
 We choose $b=\epsilon$ with $\epsilon$ non zero and find
 \begin{align}
-X = \epsilon x, \quad T = \epsilon^3 t,\quad U = \frac{1}{\epsilon^2} u. 
+X = \epsilon x, \quad T = \epsilon^3 t,\quad U = \frac{1}{\epsilon^2} u. \label{eq:sym_transf}
 \end{align}
 Now we assume, that $u(x,t) = f(x,t)$ is a solution to \cref{eq:kdv}. The found symmetries leave the equation invariant. So we can construct a second solution
 \begin{align}
@@ -93,3 +93,20 @@ We know, from exercise (a) that \cref{eq:sol_4b} will also be solved by
 u(x,t)=\epsilon^2\left(-2\mathscr{P}(\epsilon\left( x-\epsilon^2v t\right), g_1,g_2)-\frac{v}{6}\right).
 \end{align}
 For larger $\epsilon$ the amplitude of $u$ will clearly be larger. But at the same time, the time evolution will be faster, because we have an additional $\epsilon^2$ in front of $t$, compared to $x$. Or we could say, that we absorb the $\epsilon^2$ into a new velocity $\tilde{v}=v\epsilon^2$ which will of course be larger for larger $\epsilon$. So the wave propagates faster. \todo{Explanation}
+\paragraph{(d)}
+We  can deduce with the symmetry transformation of \cref{eq:sym_transf}, that the following quantities are invariant under transformation
+\begin{align}
+X^2U&=\epsilon^2x^2\frac{1}{\epsilon^2} u = x^2u,\\
+X^3T^{-1}&=\epsilon^3x^3(\epsilon^3t)^{-1}=x^3t^{-1}.
+\end{align}
+In contrast to exercise (c), we propose a solution of the form
+\begin{align}
+u(x,t) = \frac{1}{x^2}f(\xi),\quad \xi=x^3/t.
+\end{align}
+With a little help from your favourite computer algebra system, we calculate
+\begin{align}
+\partial_x u&=\frac 3t f'\left(\xi\right)-\frac{2}{x^3}f\left(\xi\right),\\
+\partial_t u&=-\frac{x}{t^2}f'\left(\xi\right),\\
+\partial^3_x u&=27 \frac{x^4}{t^3} f^{(3)}\left(\xi\right)+24\frac{1}{tx^2}f'\left(\xi\right)-24\frac{1}{x^5}f\left(\xi\right).
+\end{align}
+Ins
