@@ -110,3 +110,19 @@ With a little help from your favourite computer algebra system, we calculate
 \partial^3_x u&=27 \frac{x^4}{t^3} f^{(3)}\left(\xi\right)+24\frac{1}{tx^2}f'\left(\xi\right)-24\frac{1}{x^5}f\left(\xi\right).
 \end{align}
 Ins
+\paragraph{(f)}
+In one dimension we can write a conservation law as
+\begin{align}
+\int_a^b\rho(x,t)_t\dd x=-\int_a^b j(x,t)_x\dd x
+\end{align}
+When assuming $\rho$ and $\rho_x$ to be continuous in time, we can use Leibniz rule of integration on the left hand side, while integrating on the right
+\begin{align}
+\der{}{t}\int_a^b\rho(x,t) \dd x= j(a,t)-j(b,t).
+\end{align}
+If \[\lim_{x\to\pm\infty} j (x,t)= 0\] for all times, we find
+\begin{align}
+\der{}{t}\int_\R \rho \dd x = 0
+\end{align}
+to be conserved.
+In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$. This should hold for any classical solution, but we are aware that there might be weak solutions, violating this.\\
+For showing the first property, we integrate \cref{eq:transformed_kdv} in time. 
