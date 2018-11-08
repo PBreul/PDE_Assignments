@@ -109,7 +109,19 @@ With a little help from your favourite computer algebra system, we calculate
 \partial_t u&=-\frac{x}{t^2}f'\left(\xi\right),\\
 \partial^3_x u&=27 \frac{x^4}{t^3} f^{(3)}\left(\xi\right)+24\frac{1}{tx^2}f'\left(\xi\right)-24\frac{1}{x^5}f\left(\xi\right).
 \end{align}
-Ins
+Inserting this into \cref{eq:kdv} gives us 
+\begin{align}
+-\frac{x}{t^2} f'(\xi)= 27\frac{x^4f'''(\xi)}{t^3} + 24 \frac{f'(\xi)}{tx^2} - 24 \frac{f(\xi)}{x^5} +6f(\xi)(\frac 3t f'(\xi)-\frac{2}{x^3}f(\xi)).
+\end{align}
+We multiply the equation with $x^5$ and rewrite everything in terms of $\xi$ and regrouping the terms
+\begin{align}
+0= 27 \xi^3 f''' + (24\xi+\xi^2) f' - 24 f + 9\xi(f^2)' - 12f^2.\label{eq:f_eq_d}
+\end{align} 
+Now we make the ansatz $f(\xi)=a$, with $a$ being a constant, we get
+\begin{align}
+0=-24a-12a^2
+\rightarrow a=0 \vee a= -2.
+\end{align}
 \paragraph{(f)}
 In one dimension we can write a conservation law as
 \begin{align}
@@ -125,4 +137,21 @@ If \[\lim_{x\to\pm\infty} j (x,t)= 0\] for all times, we find
 \end{align}
 to be conserved.
 In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$. This should hold for any classical solution, but we are aware that there might be weak solutions, violating this.\\
-For showing the first property, we integrate \cref{eq:transformed_kdv} in time. 
+For showing the first property, we integrate \cref{eq:kdv} in space
+\begin{align}
+\int_\R u_t \,\dd x&= \int_\R u_{xxx} +6uu_x\,\dd x\\
+\iff \der{}{t} \int_\R u \,\dd x & = \int_R (\underbrace{u_{xx} + 3 u^2}_{j(x,t)})_x\, \dd x.
+\end{align} 
+Since we assume $u$ and its spatial derivatives to vanish at infinity, we have \[\lim_{x\to\pm\infty} j (x,t)= 0\] and thus
+\begin{align}
+\der{}{t} \int_\R u \dd x = 0.
+\end{align}
+For showing the second conservation, we multiply \cref{eq:kdv} by $2u$ and integrate in space
+\begin{align}
+\int_\R2 uu_t\,\dd x & = \int_\R 2uu_{xxx} +12u^2u_x \, \dd x\\
+\iff\der{}{t}\int_\R u^2\, \dd x&= \int_R (2uu_{xx}-u_x^2)_x + (4u^3)_x\,\dd x
+\end{align}
+So we find $j(x,t)=2uu_{xx}-u_x^2 + 4u^3$ vanishing at infinity and thus 
+\begin{align}
+\der{}{t}\int_\R u^2\, \dd x= 0.
+\end{align}
