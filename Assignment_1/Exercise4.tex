@@ -92,7 +92,8 @@ We know, from exercise (a) that \cref{eq:sol_4b} will also be solved by
 \begin{align}
 u(x,t)=\epsilon^2\left(-2\mathscr{P}(\epsilon\left( x-\epsilon^2v t\right), g_1,g_2)-\frac{v}{6}\right).
 \end{align}
-For larger $\epsilon$ the amplitude of $u$ will clearly be larger. But at the same time, the time evolution will be faster, because we have an additional $\epsilon^2$ in front of $t$, compared to $x$. Or we could say, that we absorb the $\epsilon^2$ into a new velocity $\tilde{v}=v\epsilon^2$ which will of course be larger for larger $\epsilon$. So the wave propagates faster. \todo{Explanation}
+For larger $\epsilon$ the amplitude of $u$ will clearly be larger. But at the same time, the time evolution will be faster, because we have an additional $\epsilon^2$ in front of $t$, compared to $x$. Or we could say, that we absorb the $\epsilon^2$ into a new velocity $\tilde{v}=v\epsilon^2$ which will of course be larger for larger $\epsilon$. So the wave propagates faster.\\
+In a linear equation this effect would not appear since a change in amplitude would always be present in each term of the component and thus simply factor out and not influence the solution. 
 \paragraph{(d)}
 We  can deduce with the symmetry transformation of \cref{eq:sym_transf}, that the following quantities are invariant under transformation
 \begin{align}
@@ -122,6 +123,23 @@ Now we make the ansatz $f(\xi)=a$, with $a$ being a constant, we get
 0=-24a-12a^2
 \rightarrow a=0 \vee a= -2.
 \end{align}
+We now want to find a rational solution, whose denominator and numerator are quadratic polynomials and $f(0)=0$. The most general form of this ansatz is given by
+\begin{align}
+f(\xi)=\frac{a\xi^2+b\xi}{c\xi^2+d\xi+e},\label{eq:ansatz_polynomial}\\
+a\neq 0, c\neq 0, e\neq0.
+\end{align}
+We know that $f(\xi)$ satisfies \cref{eq:f_eq_d} for every $\xi\in\R$. So we pick 5 arbitrary points pairwise different points for $\xi$ and thus get a system of equations which we can solve for the coefficients $a,b,c,d,e$. When inserting these into  \cref{eq:ansatz_polynomial} we have to check if this solution solves \cref{eq:f_eq_d} for $\xi\in\R$. Luckily, we do not have to do this by hand, since Mathematica has a function "SolveAlways[]", which does this for us. We find
+\begin{align}
+\{c \rightarrow -(d/24), e \rightarrow -6 d, a \rightarrow d/4, b \rightarrow 6 d\}.
+\end{align}
+So we get the solution
+\begin{align}
+f(\xi) = \frac{\frac 14\xi^2+6\xi}{-\frac{1}{24}\xi^2+\xi-6}.
+\end{align}
+Or if we rewrite it in terms of $u(x,t)$
+\begin{align}
+u(x,t)=\frac{1}{x^2}\frac{\frac 14(x^3/t)^2+6x^3/t}{-\frac{1}{24}(x^3/t)^2+x^3/t-6} =\frac{\frac 14(x^4/t^2)+6x/t}{-\frac{1}{24}(x^8/t^2)+x^5/t-6x^2}.
+\end{align}
 \paragraph{(f)}
 In one dimension we can write a conservation law as
 \begin{align}
@@ -136,7 +154,7 @@ If \[\lim_{x\to\pm\infty} j (x,t)= 0\] for all times, we find
 \der{}{t}\int_\R \rho \dd x = 0
 \end{align}
 to be conserved.
-In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$. This should hold for any classical solution, but we are aware that there might be weak solutions, violating this.\\
+In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$, since the total energy of the fluid $\int_\R u^2\dd x$ could otherwise become infinite.ß\\
 For showing the first property, we integrate \cref{eq:kdv} in space
 \begin{align}
 \int_\R u_t \,\dd x&= \int_\R u_{xxx} +6uu_x\,\dd x\\
@@ -151,7 +169,46 @@ For showing the second conservation, we multiply \cref{eq:kdv} by $2u$ and integ
 \int_\R2 uu_t\,\dd x & = \int_\R 2uu_{xxx} +12u^2u_x \, \dd x\\
 \iff\der{}{t}\int_\R u^2\, \dd x&= \int_R (2uu_{xx}-u_x^2)_x + (4u^3)_x\,\dd x
 \end{align}
-So we find $j(x,t)=2uu_{xx}-u_x^2 + 4u^3$ vanishing at infinity and thus 
+So we find $j(x,t)=2uu_{xx}-u_x^2 + 4u^3$ vanishing at spatial infinity and thus 
 \begin{align}
 \der{}{t}\int_\R u^2\, \dd x= 0.
+\end{align}
+The last one is a bit more tricky, we use the operation $3u^2-u_x\partial_x$ on the equation and integrate in space 
+\begin{align}
+\int_\R3u_t u^2 - u_{tx}u_x\dd x +\int_\R(3u^2-u_x\partial_x)(u_{xxx} +6uu_x)\dd x =0.
+\end{align}
+The first term can be directly calculated, for the second term we use our favourite computer algebra system to verify that we can rewrite as follows
+\begin{align}
+\der{}{t}\int_\R u^3 -\frac 12 u_x^2 \dd x -\frac 12\int_\R(\underbrace{6u^2u_{xx}+u_{xx}-12uu_x^2-2u_{xxx}u_x+9u^4}_{j(x,t)})_x\dd x = 0.
+\end{align}
+So, again $j(x,t)$ vanishes under our assumptions at spatial infinity and thus
+\begin{align}
+\der{}{t}\int_\R u^3 -\frac 12 u_x^2 \dd x  = 0.
+\end{align}
+\paragraph{(g)}
+For this paragraph we simply integrate the invarients from the previous exercise in time. 
+\begin{align}
+\int_0^t \der{}{s}\underbrace{\int_\R u\dd x}_{F(s)}\dd s &= 0\\
+\iff F(t) &= F(0)\\
+\iff \int_\R u(x,t)\dd x&=\int_\R u(x,0) \dd x
+\end{align}
+Where we simply used the fundamental theorem of calculus. So the integral over $u$ is bounded by the integral of the initial condition and one could write if wanted
+\begin{align}
+\int_\R u(x,t)\dd x\leq\int_\R u(x,0) \dd x
+\end{align}
+In the same manner
+\begin{align}
+\int_0^t \der{}{s}\int_\R u^2(x,s)\dd x\, \dd s& =0\\
+\iff \int_\R u^2(x,t)\dd x &= \int_\R u^2(x,0)\dd x \\
+\Rightarrow \int_\R u^2(x,t)\dd x &\leq \int_\R u^2(x,0)\dd x .
+\end{align}
+This result can immediately written down in terms of the $l_2$ norm
+\begin{align}
+\norm{u(x,t)}^2_{L_2}\leq \norm{u(x,0)}^2_{L_2}
+\end{align}
+And for the last invarient
+\begin{align}
+\int_0^t \der{}{s}\int_\R u^3(x,s)-\frac 12 u_x^2(x,s)\dd x\, \dd s& =0\\
+\iff \int_\R u^3(x,t)-\frac 12 u_x^2(x,t)\dd x &= \int_\R u^3(x,0)-\frac 12 u_x^2(x,0)\dd x \\
+\Rightarrow \int_\R u^3(x,t)-\frac 12 u_x^2(x,t)\dd x &\leq \int_\R u^3(x,0)-\frac 12 u_x^2(x,0)\dd x.
 \end{align}
