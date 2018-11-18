@@ -76,7 +76,7 @@ The Weierstrass $\mathscr{P}$-function solves equations of the form
 \begin{align}
 (\mathscr{P}')^2 = 4\mathscr{P}^3-g_1\mathscr{P}-g_2
 \end{align}
-We have to make a substitution, so we get rid of the quadradic term in $\mathscr{P}$.
+We have to make a substitution, so we get rid of the quadratic term in $u$.
 We propose $u(\xi)=-2y(\xi)-\frac v6$. Inserting, gives (addition of cubic and quadratic term done with Wolframalpha)
 \begin{align}
 -8y^3+\frac{v^2y}{2}+\frac{v^3}{108} +2(y')^2&=A\left(-2y-\frac v6\right) +B\\
@@ -195,6 +195,11 @@ For this paragraph we simply integrate the invarients from the previous exercise
 Where we simply used the fundamental theorem of calculus. So the integral over $u$ is bounded by the integral of the initial condition and one could write if wanted
 \begin{align}
 \int_\R u(x,t)\dd x\leq\int_\R u(x,0) \dd x
+\end{align}
+If we now define $u_+(x,t)$ as the positive bit of $u(x,t)$ and zero everywhere else and $u_-(x,t)$ respectively, we can write 
+\begin{align}
+\int_\R |u_+(x,t)|-|u_-(x,t)|\dd x\leq&\int_\R  |u_+(x,0)|-|u_-(x,0)|\dd x\\
+\iff \quad \norm{u_+(x,t)}_{L_1}-\norm{u_-(x,t)}_{L_1}\leq& \norm{u_+(x,0)}_{L_1}-\norm{u_-(x,0)}_{L_1}
 \end{align}
 In the same manner
 \begin{align}
