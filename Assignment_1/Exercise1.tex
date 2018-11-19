@@ -1,11 +1,12 @@
 \section{Exercise 1}
 \paragraph{a)}\label{par:a}
+We want to solve the following pde, using the method of charchteristics
 \begin{align}
 u_t + 7u_x=0,&\label{eq:1a}\\
 u \rightarrow u(x,t),&\\
 u_0 \rightarrow u(0,t).&
 \end{align}
-Introduce curve in space time with parametrisation $u(x(s),t(s))$. Using the chain rule we can calculate the total derivative of $u$  by the parameter $s$
+We introduce a curve in space time with parametrisation $u(x(s),t(s))$. Using the chain rule we can calculate the total derivative of $u$  by the parameter $s$
 \begin{align}
 \der{}{s}u(x(s),t(s)) = \der{x}{s}\pder{u}{x} + \der{t}{s}\pder{u}{t}
 \end{align}
@@ -33,18 +34,18 @@ u(x,t)=u_0(x_0)=u_0(x-7t).
 \end{align}
 
 \paragraph{b)}
+Here again, we want to solve this pde, using the method of charachteristics
 \begin{align}
-u_t - 2u_x +3u=0,&\label{eq:1a}\\
+u_t - 2u_x +3u=0,&\label{eq:1b}\\
 u \rightarrow u(x,t),&\\
 u_0 \rightarrow u(0,t).&
 \end{align}
-We use the same reasoning as in \cref{par:a} to arrive at the equations
+We use the same reasoning as in exercise a, to arrive at the equations
 \begin{align}
 \der{t}{s} &= 1,\\
 \der{x}{s}&=-2,\\
 \der{}{s}u&+3u=0.\label{eq:1b_difu}
 \end{align}
-
 The first two equations can again be solved by simple integration. For the last we use the exponential ansatz $u(x(s),t(s)) = u_0(x_0)\cdot e^{a\cdot s}$. Plugging this into \cref{eq:1b_difu} results in the equation
 \begin{align}
  u_0(x_0)\cdot e^{a\cdot s}\cdot(a+3) = 0.

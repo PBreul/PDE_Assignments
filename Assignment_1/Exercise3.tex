@@ -5,7 +5,7 @@ In this exercise we want to actually find an entropy / entropy flux pair $(\eta,
 (\rho v)_t +(\rho v^2 +p)_x &=0.
 \end{align}
 Here $p = p(\rho)$ is a smooth function with $p'(\rho)>0$.  We will use the same approach as in the previous exercise, i.e. deriving a differential equation for the entropy $\eta$, but this time we will solve it and calculate the associated entropy flux $q$ as well. \\
-As a first step we will rewrite the equation in term of the new variable $\Phi = \rho v$.
+As a first step we will rewrite the equation in term of the new variable $\Phi = \rho v$. We will treat this as being independent from $\rho$, which we can do since $v$ was a second independent variable.
 \begin{align}
 \rho_t +\Phi_x &=0,\\
 \Phi_t +(\Phi^2 / \rho +p)_x &=0.
@@ -49,9 +49,9 @@ Inserting this into \cref{eq:diff_eta_3} gives for the left and right hand side
 \eta_{\Phi\Phi}(p'(\rho)-\Phi^2/\rho^2)&=\frac 1\rho(p'(\rho)-\Phi^2/\rho^2),\\
  \eta_{\rho\rho} +2\Phi/\rho \eta_{\rho \Phi}& = \frac{\Phi^2}{\rho^3}+\frac{p'(\rho)}{\rho} -2\frac{\Phi^2}{\rho^3} = \frac 1\rho(p'(\rho)-\Phi^2/\rho^2).
 \end{align}
-So \cref{eq:eta_ansatz_3} solves \cref{eq:diff_eta_3}. \\ \\
+Since they are equal, \cref{eq:eta_ansatz_3} solves \cref{eq:diff_eta_3}. \\ \\ \\
 As a second step we want to calculate the corresponding entropy flux $ q(\rho,\Phi)$.
-For this we will use the relation following relation of entropy flux $q$, entropy $\eta$ and flux $\bm f$, which holds for conservation laws
+For this we will use the following relation of entropy flux $q$, entropy $\eta$ and flux $\bm f$, which holds for conservation laws and was given in the lecture notes
 \begin{align}
 D q = D\eta D\bm f.\label{eq:ent_flux_diff}
 \end{align}
@@ -82,7 +82,7 @@ We calculate the derivatives
 \partial_\Phi q = P'(\rho) +\frac 32 \frac{\Phi^2}{\rho^2}
 \end{align}
 We see, that this fits the requirement of \cref{eq:der_q}, so \cref{eq:q_sol} is the to $\eta$ corresponding entropy flux $q$.
-\\We can rewrite the solution in terms of the original variables, by re- substituting $\Phi=\rho v$
+We can rewrite the solution in terms of the original variables, by re-substituting $\Phi=\rho v$
 \begin{align}
 \eta(\rho,v)&=\frac 12 \rho v^2 +P(\rho),\\
  q(\rho,v)&= \rho v P'(\rho) + \frac 12 \rho v^3.

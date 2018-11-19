@@ -3,12 +3,12 @@ Conservation laws take on the form
 \begin{align}
 \bm u_t(u_1,...,u_n) + \bm f_x(\bm u(u_1,...,u_n)) = 0.
 \end{align}
-For these laws we can define a entropy $\eta$, such that it fulfils the following relation
+For these laws we defined an entropy $\eta$ in the lecture notes, such that it fulfils the following relation 
 \begin{align}
-(Df)^T D^2\eta = D^2\eta Df.\label{eq:entropy_flux_diff}
+(D\bm f)^T D^2\eta = D^2\eta D \bm f.\label{eq:entropy_flux_diff}
 \end{align}
 The notation is the same as in the lecture notes, so $D \bm f$ is the Jacobian of $\bm f$ and $D^2 \eta$ the Hessian matrix of $\eta$.
-Our problem takes the form
+In vector notation, the in this exercise given conservation law, takes on the form
 \begin{align}
 \partial_t
 \begin{pmatrix} 
@@ -40,8 +40,8 @@ v\eta_{\Phi\Phi} +\eta_{\Phi v} & \Phi\eta_{\Phi\Phi} + v\eta_{\Phi v}\\
 v \eta_{v\Phi} + \eta_{v v} & \Phi\eta_{ v \Phi}+\eta_{v v}
 \end{pmatrix}
 \end{align}
-This gives us four different equations. We assume $\eta$ to have continuous second derivatives, with Schwarz's theorem we can interchange the derivatives, so $\eta_{\Phi v} = \eta_{v\Phi}$. This makes the first and last equation trivial $0 = 0$. The second and third are actually the same, namely 
+This gives us four different equations. We assume $\eta$ to have continuous second derivatives.  Schwarz's theorem then tells us that we can interchange the partial derivatives, so $\eta_{\Phi v} = \eta_{v\Phi}$. This makes the first and last equation trivial $0 = 0$. The second and third equation are actually the same, namely 
 \begin{align}
 \Phi \eta_{\Phi\Phi} = \eta_{vv}.\label{eq:final}
 \end{align}
-So the entropy $\eta$, has to fulfil \cref{eq:final}.
+So the entropy $\eta$, has to fulfil \cref{eq:final}, which is the equation we were searching for. 

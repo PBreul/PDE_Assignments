@@ -7,7 +7,7 @@ which is known as the Korteweg-de Vries equation.
 \paragraph{(a)}\label{ch:4a}
 We want to find a symmetry transformation of the dependent and independent variables
 \begin{align}
-S:(t,x,u)\rightarrow(T,X,U) = (at,bt,cu),
+S:(t,x,u)\rightarrow(T,X,U) = (at,bx,cu),
 \end{align}
 with $a,b,c$ nonzero constants, such that \cref{eq:kdv} takes the form
 \begin{align}
@@ -27,7 +27,7 @@ U_{XXX}&=c \frac{\partial^3 x}{\partial X^3} \frac{\partial^3}{\partial x^3} u(x
 Plugging this into \cref{eq:transformed_kdv} we get
 \begin{flalign}
  &&\frac ca u_t &= \frac{c}{b^3} u_{xxx} +6\frac{c^2}{b}uu_x,&&\\
-\iff &&   u_t &= \frac{a}{b^3} u_{xxx} +6\frac{c}{b}uu_x.&&
+\iff &&   u_t &= \frac{a}{b^3} u_{xxx} +6\frac{ac}{b}uu_x.&&
 \end{flalign}
 So we get the conditions
 \begin{flalign}
@@ -40,15 +40,15 @@ X = \epsilon x, \quad T = \epsilon^3 t,\quad U = \frac{1}{\epsilon^2} u. \label{
 \end{align}
 Now we assume, that $u(x,t) = f(x,t)$ is a solution to \cref{eq:kdv}. The found symmetries leave the equation invariant. So we can construct a second solution
 \begin{align}
-u(x,t) = \epsilon^2 f(X,T) =  \epsilon^2 f(\epsilon x, \epsilon^3 t).
+u(x,t) =\epsilon^2 U(X,T) =  \epsilon^2 f(X,T) =  \epsilon^2 f(\epsilon x, \epsilon^3 t).
 \end{align}
 
 \paragraph{(b)}
-We propose a solution of the type 
+We now propose a solution of the type 
 \begin{align}
-u(x,t)=f(\xi),\quad \xi= x-vt.
+u(x,t)=f(\xi),\quad \xi= x-vt,
 \end{align}
-We insert this ansatz into\cref{eq:kdv}. With the chain rule \cref{eq:chain_rule} we calculate the individual terms
+with $v$ a real constant. We insert this ansatz into\cref{eq:kdv}. With the chain rule, \cref{eq:chain_rule}, we calculate the individual terms
 \begin{align}
 u_t &= \partial_\xi u \underbrace{\partial_t \xi}_{-v}=-v \partial_\xi u,\\
 u_x &= \partial_\xi u \partial_x \xi = \partial_\xi u ,\\
@@ -58,11 +58,11 @@ The equation becomes
 \begin{align}
 -v u_\xi = u_{\xi\xi\xi} + 6 u u_\xi.
 \end{align}
-Since $\xi$ is the only variable, we have an ODE, we will use $(\cdot)'$ as notation for derivative to make clear, we are dealing with an ODE
+Since $\xi$ is the only variable left, we have an ODE and we  will use $(\cdot)'$ as notation for derivative to make clear, we are dealing with an ODE
 \begin{align}
 -v u' = u''' +6 uu'.\label{eq:4b_ode}
 \end{align}
-We take the integral
+To solve this, we take the integral
 \begin{align}
 \int -v u' \dd\xi &= \int u''' +3(u^2)' \dd\xi\\
 \Rightarrow v u+u''+3u^2 &= A.
@@ -70,19 +70,20 @@ We take the integral
 With $A$ being some integration constant.  We multiply by $u'$ and integrate again
 \begin{align}
 \int vuu' +u'u'' + 3u'u^2 \dd\xi&= \int Au' \dd\xi\\
-\Rightarrow \frac 12 vu^2 + \frac 12 (u')^2  + u^3&= Au +B
+\Rightarrow \frac 12 vu^2 + \frac 12 (u')^2  + u^3&= Au +B\label{eq:4b_two_int_ode}
 \end{align}
-The Weierstrass $\mathscr{P}$-function solves equations of the form
+This looks similar to the ODE, that is solved by the Weierstrass $\mathscr{P}(x,g_1,g_2)$-function, which takes the form
 \begin{align}
-(\mathscr{P}')^2 = 4\mathscr{P}^3-g_1\mathscr{P}-g_2
+(\mathscr{P}'(x))^2 = 4\mathscr{P}^3(x)-g_1\mathscr{P}(x)-g_2 \label{eq:Weierstrass_ODE}
 \end{align}
+But \cref{eq:4b_two_int_ode} has an additional quadratic term $u^2$.
 We have to make a substitution, so we get rid of the quadratic term in $u$.
-We propose $u(\xi)=-2y(\xi)-\frac v6$. Inserting, gives (addition of cubic and quadratic term done with Wolframalpha)
+We propose $u(\xi)=-2y(\xi)-\frac v6$. Inserting into \cref{eq:4b_two_int_ode}, gives (calculation done with the help of Wolframalpha)
 \begin{align}
 -8y^3+\frac{v^2y}{2}+\frac{v^3}{108} +2(y')^2&=A\left(-2y-\frac v6\right) +B\\
 \iff (y')^2 &= 4y^3-\underbrace{\left(\frac{v^2}{4}+A\right)}_{g_1}y - \underbrace{\left(\frac{v^3}{216} +\frac{Av}{12} - \frac B2\right)}_{g_2}
 \end{align}
-So the solution to \cref{eq:kdv} is given by
+This looks like \cref{eq:Weierstrass_ODE} and thus a solution to \cref{eq:kdv} is given by
 \begin{align}
 u(x,t) &= -2\mathscr{P}(\xi,g_1,g_2) - \frac v6, \label{eq:sol_4b}\\
 \xi = x-vt,& \quad g_1=\frac{v^2}{4}+A, \quad g_2=\frac{v^3}{216} +\frac{Av}{12} - \frac B2.
@@ -93,7 +94,7 @@ We know, from exercise (a) that \cref{eq:sol_4b} will also be solved by
 u(x,t)=\epsilon^2\left(-2\mathscr{P}(\epsilon\left( x-\epsilon^2v t\right), g_1,g_2)-\frac{v}{6}\right).
 \end{align}
 For larger $\epsilon$ the amplitude of $u$ will clearly be larger. But at the same time, the time evolution will be faster, because we have an additional $\epsilon^2$ in front of $t$, compared to $x$. Or we could say, that we absorb the $\epsilon^2$ into a new velocity $\tilde{v}=v\epsilon^2$ which will of course be larger for larger $\epsilon$. So the wave propagates faster.\\
-In a linear equation this effect would not appear since a change in amplitude would always be present in each term of the component and thus simply factor out and not influence the solution. 
+In a linear equation this effect would not appear since a change in amplitude would always be present in each term of the equation and thus simply factor out and not influence the solution. 
 \paragraph{(d)}
 We  can deduce with the symmetry transformation of \cref{eq:sym_transf}, that the following quantities are invariant under transformation
 \begin{align}
@@ -104,7 +105,7 @@ In contrast to exercise (c), we propose a solution of the form
 \begin{align}
 u(x,t) = \frac{1}{x^2}f(\xi),\quad \xi=x^3/t.
 \end{align}
-With a little help from your favourite computer algebra system, we calculate
+With a little help from our favourite computer algebra system (Mathematica), we calculate
 \begin{align}
 \partial_x u&=\frac 3t f'\left(\xi\right)-\frac{2}{x^3}f\left(\xi\right),\\
 \partial_t u&=-\frac{x}{t^2}f'\left(\xi\right),\\
@@ -114,7 +115,7 @@ Inserting this into \cref{eq:kdv} gives us
 \begin{align}
 -\frac{x}{t^2} f'(\xi)= 27\frac{x^4f'''(\xi)}{t^3} + 24 \frac{f'(\xi)}{tx^2} - 24 \frac{f(\xi)}{x^5} +6f(\xi)(\frac 3t f'(\xi)-\frac{2}{x^3}f(\xi)).
 \end{align}
-We multiply the equation with $x^5$ and rewrite everything in terms of $\xi$ and regrouping the terms
+We multiply the equation with $x^5$, rewrite everything in terms of $\xi=x^3/t$ and regroup the terms
 \begin{align}
 0= 27 \xi^3 f''' + (24\xi+\xi^2) f' - 24 f + 9\xi(f^2)' - 12f^2.\label{eq:f_eq_d}
 \end{align} 
@@ -123,12 +124,13 @@ Now we make the ansatz $f(\xi)=a$, with $a$ being a constant, we get
 0=-24a-12a^2
 \rightarrow a=0 \vee a= -2.
 \end{align}
+So we found two solution, the trivial $f(\xi)=0$ and $f(\xi)=-2$.
 We now want to find a rational solution, whose denominator and numerator are quadratic polynomials and $f(0)=0$. The most general form of this ansatz is given by
 \begin{align}
 f(\xi)=\frac{a\xi^2+b\xi}{c\xi^2+d\xi+e},\label{eq:ansatz_polynomial}\\
 a\neq 0, c\neq 0, e\neq0.
 \end{align}
-We know that $f(\xi)$ satisfies \cref{eq:f_eq_d} for every $\xi\in\R$. So we pick 5 arbitrary points pairwise different points for $\xi$ and thus get a system of equations which we can solve for the coefficients $a,b,c,d,e$. When inserting these into  \cref{eq:ansatz_polynomial} we have to check if this solution solves \cref{eq:f_eq_d} for $\xi\in\R$. Luckily, we do not have to do this by hand, since Mathematica has a function "SolveAlways[]", which does this for us. We find
+We know that $f(\xi)$ satisfies \cref{eq:f_eq_d} for every $\xi\in\R$. So we pick 5 arbitrary pairwise different points for $\xi$ and thus get a system of equations which we can solve for the coefficients $a,b,c,d,e$. When inserting these into  \cref{eq:ansatz_polynomial} we have to check if this solution solves \cref{eq:f_eq_d} for $\xi\in\R$. Luckily, we do not have to do this by hand, since Mathematica has a function "SolveAlways[]", which does this for us. We find
 \begin{align}
 \{c \rightarrow -(d/24), e \rightarrow -6 d, a \rightarrow d/4, b \rightarrow 6 d\}.
 \end{align}
@@ -138,10 +140,11 @@ f(\xi) = \frac{\frac 14\xi^2+6\xi}{-\frac{1}{24}\xi^2+\xi-6}.
 \end{align}
 Or if we rewrite it in terms of $u(x,t)$
 \begin{align}
-u(x,t)=\frac{1}{x^2}\frac{\frac 14(x^3/t)^2+6x^3/t}{-\frac{1}{24}(x^3/t)^2+x^3/t-6} =\frac{\frac 14(x^4/t^2)+6x/t}{-\frac{1}{24}(x^8/t^2)+x^5/t-6x^2}.
+u(x,t)=\frac{1}{x^2}\frac{\frac 14(x^3/t)^2+6x^3/t}{-\frac{1}{24}(x^3/t)^2+x^3/t-6} &=\frac{\frac 14(x^4/t^2)+6x/t}{-\frac{1}{24}(x^8/t^2)+x^5/t-6x^2}\\
+&=\frac{\frac 14x^4+6xt}{-\frac{1}{24}(x^8)+x^5t-6x^2t^2}.
 \end{align}
 \paragraph{(f)}
-In one dimension we can write a conservation law as
+From the lecture notes we know that in one dimension we can write a conservation law as
 \begin{align}
 \int_a^b\rho(x,t)_t\dd x=-\int_a^b j(x,t)_x\dd x
 \end{align}
@@ -151,11 +154,10 @@ When assuming $\rho$ and $\rho_x$ to be continuous in time, we can use Leibniz r
 \end{align}
 If \[\lim_{x\to\pm\infty} j (x,t)= 0\] for all times, we find
 \begin{align}
-\der{}{t}\int_\R \rho \dd x = 0
+\der{}{t}\int_\R \rho \dd x = 0.
 \end{align}
-to be conserved.
-In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$, since the total energy of the fluid $\int_\R u^2\dd x$ could otherwise become infinite.ß\\
-For showing the first property, we integrate \cref{eq:kdv} in space
+In the following we will assume $\lim_{x\to\pm\infty}u(x,t)=0$, $\lim_{x\to\pm\infty}u_x(x,t)=0$ and $\lim_{x\to\pm\infty}u_{xx}(x,t)=0$, since the total energy of the fluid $\int_\R u^2\dd x$ could otherwise become infinite.\\
+For showing the first property of the exercise, we integrate \cref{eq:kdv} in space
 \begin{align}
 \int_\R u_t \,\dd x&= \int_\R u_{xxx} +6uu_x\,\dd x\\
 \iff \der{}{t} \int_\R u \,\dd x & = \int_R (\underbrace{u_{xx} + 3 u^2}_{j(x,t)})_x\, \dd x.
@@ -173,7 +175,7 @@ So we find $j(x,t)=2uu_{xx}-u_x^2 + 4u^3$ vanishing at spatial infinity and thus
 \begin{align}
 \der{}{t}\int_\R u^2\, \dd x= 0.
 \end{align}
-The last one is a bit more tricky, we use the operation $3u^2-u_x\partial_x$ on the equation and integrate in space 
+The last one is a bit more tricky, we use the operation $3u^2-u_x\partial_x$ on \cref{eq:kdv} and integrate in space 
 \begin{align}
 \int_\R3u_t u^2 - u_{tx}u_x\dd x +\int_\R(3u^2-u_x\partial_x)(u_{xxx} +6uu_x)\dd x =0.
 \end{align}
@@ -201,7 +203,8 @@ If we now define $u_+(x,t)$ as the positive bit of $u(x,t)$ and zero everywhere 
 \int_\R |u_+(x,t)|-|u_-(x,t)|\dd x\leq&\int_\R  |u_+(x,0)|-|u_-(x,0)|\dd x\\
 \iff \quad \norm{u_+(x,t)}_{L_1}-\norm{u_-(x,t)}_{L_1}\leq& \norm{u_+(x,0)}_{L_1}-\norm{u_-(x,0)}_{L_1}
 \end{align}
-In the same manner
+With $\norm{\cdot}_{L_1}$ the $L_1$ norm.\\
+In the same manner we can treat the second invarient
 \begin{align}
 \int_0^t \der{}{s}\int_\R u^2(x,s)\dd x\, \dd s& =0\\
 \iff \int_\R u^2(x,t)\dd x &= \int_\R u^2(x,0)\dd x \\
